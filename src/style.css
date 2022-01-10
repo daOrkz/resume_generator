@@ -1,0 +1,51 @@
+.cont {
+  margin: 0 auto;
+  width: 1230px;
+}
+
+.flex {
+  display: flex;
+  margin: 0 auto;
+  
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 1.2em;
+}
+
+.left {
+  width: 400px;
+  border: 1px solid black;
+  /* display: flex;
+  flex-direction: column; */
+}
+.select {
+  width: 150px;
+  font-size: 1.2em;
+}
+/* textarea {
+  margin-bottom: 20px;
+} */
+button {
+  margin-top: 15px;
+  font-size: 1.3em;
+}
+
+.right {
+  width: 800px;
+  border: 1px solid black;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.comments {
+  width: 900px;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 20px;
+  margin-top: 20px;
+}
