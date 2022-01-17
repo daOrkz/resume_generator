@@ -1,15 +1,18 @@
 <template>
 <div class="right">
   <component 
-    v-for="block in blocks"
+    v-for="(block, ind) in blocks"
     :key="block"
     :is="'block-' + block.title"
     :text="block.text"
-  ></component>
+    @action="del(ind)"
+  >
+  </component>
 </div> 
 </template>
 
 <script>
+import AppButton from "./AppButton.vue"
 import BlockAvatar from "./RightCpmponents/block-img.vue"
 import BlockSubtitle from "./RightCpmponents/block-subtitle.vue"
 import BlockText from "./RightCpmponents/block-text.vue"
@@ -21,7 +24,12 @@ export default {
       type: Object
     }
   },
-  components: {BlockAvatar,BlockSubtitle,BlockText,BlockTitle}
+  methods: {
+    del(data) {
+      this.$emit('delete-block', data)
+    }
+  },
+  components: {BlockAvatar,BlockSubtitle,BlockText,BlockTitle,AppButton}
 }
 </script>
 

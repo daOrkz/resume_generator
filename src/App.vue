@@ -1,12 +1,13 @@
 <template>
   <div class="cont">
     <div class="flex">
-      <app-left @create-block="AddBlock"></app-left>
-      <app-right :blocks="block"></app-right>
+      <app-left @create-block="AddBlock" @load-resume="loadResume"></app-left>
+      <app-right :blocks="block" @delete-block="removeBlock"></app-right>
     </div>
     <app-button v-if="!TenComments.length" @click="LoadComments">Commits</app-button>
     <app-comments v-if="TenComments" :comments="TenComments"></app-comments>
   </div>
+  <h3>{{block}}</h3>
 </template>
 
 <script>
@@ -19,6 +20,7 @@ export default {
   data() {
     return {
       block: [],
+      fullResume: null,
       TenComments: []
     }
   },
@@ -35,6 +37,25 @@ export default {
       for (let i = 0; i < 10; i++) {
         this.TenComments.push(comments[i])
       }
+    },
+    loadResume(data) {
+
+      this.fullResume = Object.keys(data).map(key => {
+        return { 
+          id: key,
+          title: data[key].title,
+          text: data[key].text
+        }
+      })
+      this.block = this.fullResume
+    },
+    removeBlock(data) {
+      let idBlock = this.block[data].id
+      this.block.splice(data, 1)
+      fetch(`https://testo-1fe49-default-rtdb.firebaseio.com/resume/${idBlock}.json`, {
+        method: "DELETE"
+      })
+
     }
   },
   components: {AppLeft, AppRight, AppButton, AppComments}

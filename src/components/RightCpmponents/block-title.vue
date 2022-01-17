@@ -1,5 +1,7 @@
 <template>
-  <h1>{{text}}</h1>
+<div>
+  <h1>{{text}}</h1> <button @click="$emit('action')">Del</button>
+</div>
 </template>
 
 <script>
